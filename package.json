@@ -1,0 +1,23 @@
+{
+  "name": "hnfeed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/www/server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "helmet": "^3.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "nodemon": "^1.18.5"
+  },
+  "scripts": {
+    "dev": "nodemon main"
+  },
+  "author": "Mathías Donoso <mathiasd88@gmail.com>",
+  "license": "MIT"
+}
