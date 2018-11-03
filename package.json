@@ -2,12 +2,17 @@
   "name": "hnfeed",
   "version": "1.0.0",
   "description": "",
-  "main": "bin/www/server.js",
+  "main": "bin/www",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.4",
-    "helmet": "^3.14.0"
+    "helmet": "^3.14.0",
+    "moment": "^2.22.2",
+    "mongoose": "^5.3.8",
+    "node-cron": "^2.0.3",
+    "pug": "^2.0.3"
   },
   "devDependencies": {
     "eslint": "^5.8.0",
