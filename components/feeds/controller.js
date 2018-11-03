@@ -1,7 +1,7 @@
 const News = require('./../news/model');
 
 const index = (req, res) => {
-  News.find({ active: true })
+  News.find({ active: true }).sort({ createdAt: -1 })
     .then((newsList) => {
       res.render('index.pug', {
         newsList,
