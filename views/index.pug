@@ -1,15 +1,16 @@
 extends layout.pug
 
 block content
-  h1 HN Feed
-  h4 We <3 hacker news!
+  div.jumbotron
+    h1 HN Feed
+    h4 We <3 hacker news!
   table.table
     tbody
       each news in newsList
-        tr
+        tr(onmouseover='app.showButton(this);', onmouseout='app.hideButton(this);')
           th #{news.title} - #{news.author} -
           th #{news.createdAt}
           th
             form(method='POST', action=`/${news._id}`)
-              button.btn-default(type='submit')  
+              button.btn-default(type='submit', hidden)
                 i.fas.fa-trash-alt

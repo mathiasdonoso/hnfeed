@@ -1,11 +1,9 @@
 const axios = require('axios');
 const News = require('./model');
 
-const getNews = () => {
-  return axios.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs');
-};
+const getNews = () => axios.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs');
 
-const index = (req, res) => {
+const call = () => {
   getNews()
     .then((response) => {
       const newsList = response.data.hits;
@@ -13,7 +11,7 @@ const index = (req, res) => {
 
       newsList.forEach((news) => {
         const newsFeed = {
-          storyId: news.story_id,
+          objectId: news.objectID,
           title: news.title || news.story_title,
           author: news.author,
           createdAt: news.created_at_i,
@@ -28,10 +26,6 @@ const index = (req, res) => {
       News.collection.insertMany(list, (err, docs) => {
         if (err) {
           console.error(err);
-        } else {
-          res.status(200).json({
-            message: 'Yeah!',
-          });
         }
       });
     })
@@ -39,5 +33,5 @@ const index = (req, res) => {
 };
 
 module.exports = {
-  index,
+  call,
 };

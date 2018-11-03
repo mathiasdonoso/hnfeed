@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const { Schema } = mongoose;
+
+const displayCreatedAt = (createdAt) => {
+  const prettyDate = moment.unix(createdAt);
+  return prettyDate.fromNow();
+};
 
 const NewsSchema = new Schema({
   objectId: {
@@ -19,6 +25,7 @@ const NewsSchema = new Schema({
   createdAt: {
     type: Number,
     required: true,
+    get: displayCreatedAt,
   },
   active: {
     type: Boolean,
