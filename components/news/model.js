@@ -22,6 +22,10 @@ const NewsSchema = new Schema({
     type: String,
     required: true,
   },
+  url: {
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: Number,
     required: true,

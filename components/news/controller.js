@@ -11,12 +11,13 @@ const call = async () => {
       objectId: news.objectID,
       title: news.title || news.story_title,
       author: news.author,
+      url: news.url || news.story_url,
       createdAt: news.created_at_i,
       active: true,
     };
 
     const count = await News.where({ objectId: newsFeed.objectId }).countDocuments().count();
-    if (newsFeed.title && count === 0) {
+    if (newsFeed.title && newsFeed.url && count === 0) {
       list.push(newsFeed);
     }
   }));
