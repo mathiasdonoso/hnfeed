@@ -14,7 +14,8 @@ block content
               a(href=`${news.url}`, target='_blank')
                 span.title #{news.title}
               span.author - #{news.author} -
-            td #{news.createdAt}
+            td
+              span.time #{news.createdAt}
             td
               form(method='POST', action=`/${news._id}`)
                 input(type='hidden', name='_csrf', value=`${csrfToken}`)

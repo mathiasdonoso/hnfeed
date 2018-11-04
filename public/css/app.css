@@ -21,6 +21,11 @@ button.btn-selected {
   font-size: 13pt;
 }
 
+.time {
+  color: #333;
+  font-size: 13pt;
+}
+
 .author {
   color: #999;
 }
