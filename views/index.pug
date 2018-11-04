@@ -14,6 +14,7 @@ block content
             th #{news.createdAt}
             th
               form(method='POST', action=`/${news._id}`)
+                input(type='hidden', name='_csrf', value=`${csrfToken}`)
                 button.btn-default(type='submit', hidden)
                   i.fas.fa-trash-alt
   else

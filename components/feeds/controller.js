@@ -5,6 +5,7 @@ const index = (req, res) => {
     .then((newsList) => {
       res.render('index.pug', {
         newsList,
+        csrfToken: req.csrfToken(),
       });
     });
 };
