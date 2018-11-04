@@ -1,35 +1,29 @@
 const axios = require('axios');
 const News = require('./model');
 
-const getNews = () => axios.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs');
+const call = async () => {
+  const response = await axios.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs');
+  const newsList = response.data.hits;
+  const list = [];
 
-const call = () => {
-  getNews()
-    .then((response) => {
-      const newsList = response.data.hits;
-      const list = [];
+  await Promise.all(newsList.map(async (news) => {
+    const newsFeed = {
+      objectId: news.objectID,
+      title: news.title || news.story_title,
+      author: news.author,
+      createdAt: news.created_at_i,
+      active: true,
+    };
 
-      newsList.forEach((news) => {
-        const newsFeed = {
-          objectId: news.objectID,
-          title: news.title || news.story_title,
-          author: news.author,
-          createdAt: news.created_at_i,
-          active: true,
-        };
+    const count = await News.where({ objectId: newsFeed.objectId }).countDocuments().count();
+    if (newsFeed.title && count === 0) {
+      list.push(newsFeed);
+    }
+  }));
 
-        if (newsFeed.title) {
-          list.push(newsFeed);
-        }
-      });
-
-      News.collection.insertMany(list, (err, docs) => {
-        if (err) {
-          console.error(err);
-        }
-      });
-    })
-    .catch(err => console.error(err));
+  if (list.length > 0) {
+    await News.collection.insertMany(list);
+  }
 };
 
 module.exports = {
