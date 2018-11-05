@@ -1,0 +1,25 @@
+extends layout.pug
+
+block content
+  div.jumbotron.principal
+    h1 HN Feed
+    h4 We <3 hacker news!
+
+  if newsList.length > 0
+    table.table
+      tbody
+        each news in newsList
+          tr(onmouseover='app.showButton(this);', onmouseout='app.hideButton(this);')
+            td
+              a(href=`${news.url}`, target='_blank')
+                span.title #{news.title}
+              span.author - #{news.author} -
+            td
+              span.time #{news.createdAt}
+            td
+              form(method='POST', action=`/${news._id}`)
+                input(type='hidden', name='_csrf', value=`${csrfToken}`)
+                button.btn.btn-selected(type='submit', hidden)
+                  i.fas.fa-trash-alt
+  else
+    p There is no Hacker news feed yet =(

@@ -1,0 +1,31 @@
+.jumbotron.principal {
+  background-color: #333;
+  color: #fff;
+}
+
+tr {
+  background-color: #fff;
+  border: 1px #ccc;
+}
+
+tr.selected {
+  background-color: #fafafa;
+}
+
+button.btn-selected {
+  background-color: #fafafa;
+}
+
+.title {
+  color: #333;
+  font-size: 13pt;
+}
+
+.time {
+  color: #333;
+  font-size: 13pt;
+}
+
+.author {
+  color: #999;
+}
